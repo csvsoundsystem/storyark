@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>csv - StoryArk</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/tipsy.css">
+	<script src="libs/underscore-min.js"></script>
+	<script src="libs/jquery.tipsy.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="logo">
+			<img src="imgs/storyark-nyt.png"/>
+			<br/>
+			<span class="hackday-byline">Visualizing the long tail of news stories. Made at the <a href="http://www.nytimes.com/marketing/timesopen/hackday2012.html" target="_blank">New York Times Hack Day 2012</a> by <a href="http://www.twitter.com/mhkeller" target="_blank">Michael Keller</a>, <a href="http://www.twitter.com/aubergene" target="_blank">Julian Burgess</a>, & <a href="http://www.twitter.com/brianabelson" target="_blank">Brian Abelson</a>
+			</span><br/>
+			<span class="hackday-byline"><strong>Example: Put in 'Syria' as a first term, then click on the '(Homs) Syria' tag to see how many words have been written about that topic from 1981 to the present.</strong></span>
+		</div>
+		<h2>Enter a search term to start the visualization</h2>
+
+		<div class="step">
+			<div id="step-one" class="step-text">Step one:</div>
+			<input id="search-term-input" type="text" class="help-text input-text-field" autofocus placeholder="Enter a search term">
+			<input type="submit" value="Submit" id="search-term-submit">
+			<span class="spinner">
+				<img src="imgs/ajax-loader.gif" />
+			</span>
+			<span id="calls-remaining"></span>
+		</div>
+
+		<div id="step-two" class="step">
+			<div class="step-text">Step two: Pick a Times Topic keyword</div>
+			<div class="clearfix"></div>
+			<ul id="topic-option-list"></ul>
+		</div>
+
+		<div id="bar-plot">
+
+		</div>
+
+		<div id="calendar-plot"></div>
+		<div id="bar-hover-container"></div>
+		<div id="calendar-popup"></div>
+	</div>
+
+	<script type="text/jst" id="bar-hover-tmpl">
+			<div class="hover-headline hover-row"><%= title %> <%= word_count %></div>
+			<div class="hover-byline hover-row"><%= ifUndefined(byline) %></div>
+			<div class="hover-date hover-row"><%= formatDate(date) %></div>
+			<div class="hover-body hover-row"><%= body %></div>
+	</script>
+	<script src="js/app.js"></script>
+	<script src="js/jb.js"></script>
+</body>
+</html>
